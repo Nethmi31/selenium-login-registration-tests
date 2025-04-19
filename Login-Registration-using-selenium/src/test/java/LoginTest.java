@@ -14,16 +14,21 @@ public class LoginTest {
     {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://www.google.lk/");
-        driver.findElement(By.name("q")).sendKeys("thilakawardhana.lk" + Keys.ENTER);
-
+        driver.get("https://thilakawardhana.com/");
     }
 
-    //Redirected to the dashboard page
+    //Redirected to the user icon
     @Test
-    public void MoveDashboard(){
-        WebElement HomeLink = driver.findElement(By.xpath("/html/body/div[3]/div/div[11]/div/div[2]/div[2]/div/div/div[1]/div/div/div/div/div/div/div/div[1]/div[2]/div/div/span/a"));
-        HomeLink.click();
+    public void findusericon(){
+        WebElement account = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/sticky-header[1]/header[1]/div[1]/div[2]/div[1]/a[1]/*[name()='svg'][1]"));
+        account.click();
     }
+
+    //Happy path for the login.
+    public void happypath(){
+        WebElement email=driver.findElement(By.id("customer_email"));
+        email.sendKeys("h.u.g.nethmirashmika@gmail.com");
+    }
+
 }
 
