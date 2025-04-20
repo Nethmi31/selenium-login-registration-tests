@@ -28,6 +28,8 @@ public class LoginTest {
     public void happypath(){
         WebElement email=driver.findElement(By.id("customer_email"));
         email.sendKeys("h.u.g.nethmirashmika@gmail.com");
+        WebElement password =  driver.findElement(By.id("customer_password"));
+        password.sendKeys("1234");
     }
 
 }
