@@ -13,22 +13,43 @@ public class LoginTest {
     public void setup() throws InterruptedException {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://thilakawardhana.com/");
+        driver.get("https://practicetestautomation.com/practice-test-login/");
         Thread.sleep(3000);
     }
 
-    //Redirected to the user icon
+
+    //Check Positive LogIn test,Negative username test, Negative password test
     @Test
-    public void findusericon(){
-        WebElement account = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/sticky-header[1]/header[1]/div[1]/div[2]/div[1]/a[1]/*[name()='svg'][1]"));
-        account.click();
+    public void CheckLoginfunctionality(){
 
-        WebElement email=driver.findElement(By.id("customer_email"));
-        email.sendKeys("h.u.g.nethmirashmika@gmail.com");
-        WebElement password =  driver.findElement(By.id("customer_password"));
-        password.sendKeys("1234");
-        
+        WebElement username = driver.findElement(By.id("username"));
+        username.sendKeys("student");
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys("Password123");
+        WebElement submitbtn =  driver.findElement(By.id("submit"));
+        submitbtn.click();
+
+        String url = driver.getCurrentUrl();
+        System.out.println(url);
+        if(url.equals("https://practicetestautomation.com/logged-in-successfully/")){
+            System.out.println("Loggin success");
+        }
+
+
+        WebElement divelement = driver.findElement(By.className("post-content"));
+        String actualText = divelement.getText();
+        String expectedText = "Congratulations student. You successfully logged in!";
+        if(actualText.contains(expectedText)){
+            System.out.println("Expected text exists");
+        }else{
+            System.out.println("Expected text not exists");
+        }
+
+        WebElement linked = driver.findElement(By.linkText("Log out"));
+        linked.click();
+        System.out.println("User successfully logged out from the figma");
+
+
     }
-
 }
 
